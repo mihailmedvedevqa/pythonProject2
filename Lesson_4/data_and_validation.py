@@ -17,6 +17,7 @@ PAGE_TITLE = driver.title
 print(f"Page Title: {PAGE_TITLE}")
 assert PAGE_TITLE == "Wikipedia", "Incorrect page title"
 
-print(driver.page_source)
+PAGE_SOURCE = driver.page_source
+print(PAGE_SOURCE)
 
 time.sleep(3)
