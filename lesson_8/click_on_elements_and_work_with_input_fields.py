@@ -25,3 +25,5 @@ PASSWORD_FIELD.send_keys("0123456789")
 PASSWORD_FIELD_VALUE = PASSWORD_FIELD.get_attribute("value")
 assert "0123456789" in PASSWORD_FIELD_VALUE
 print(PASSWORD_FIELD.get_attribute("value"))
+
+time.sleep(3)
