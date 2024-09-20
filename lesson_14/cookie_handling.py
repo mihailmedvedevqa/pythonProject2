@@ -55,4 +55,5 @@ cookies = pickle.load(open(os.getcwd() + "\\cookies\\cookies.pkl", "rb"))
 for cookie in cookies:
     driver.add_cookie(cookie)
 
-driver.get("https://www.freeconferencecall.com/profile")
+driver.refresh()
+# driver.get("https://www.freeconferencecall.com/profile")
