@@ -6,6 +6,23 @@ from selenium.webdriver.chrome.options import Options
 chrome_options = Options()
 driver = webdriver.Chrome(options=chrome_options)
 
+# Базовая страница
+driver.get("https://hyperskill.org/login")
+# Дескриптор
+main_tab = driver.current_window_handle
+# Клик по кнопке, которая открывает новую вкладку
+FOR_BUSINESS_BUTTON = ("xpath", "//a[text()=' For Business ']")
+driver.find_element(*FOR_BUSINESS_BUTTON).click()
+# Получаем список дескрипторов используя параметр window_handles
+list_of_tabs = driver.window_handles
+# Переключились по индексу на новую вкладку и записали дескриптор новой вкладки в переменную
+driver.switch_to.window(list_of_tabs[1])
+second_tab = driver.current_window_handle
+# Убедились, что дескриптор сменился и отличается от изначального
+assert second_tab != main_tab, "Ошибка переключения между вкладками"
+# Пробуем кликнуть на элемент, который находиться на новой вкладке
+START_FOR_FREE_BUTTON = ("xpath", "(//a[contains(@class, 'button-secondary')])[1]")
+driver.find_element(*START_FOR_FREE_BUTTON).click()
 
 # Переключение между вкладками
 # Базовая страница
