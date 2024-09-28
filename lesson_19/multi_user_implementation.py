@@ -1,13 +1,15 @@
 import os
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
+# Устанавливаем сервис для Chrome с помощью менеджера драйвера
 service = Service(executable_path=ChromeDriverManager().install())
-options = Options()
+# Создаем объект Options для настройки параметров браузера
+chrome_options = Options()
 # Запускаем экземпляр Chrome для первого пользователя
-driver_user_1 = webdriver.Chrome(options=options, service=service)
+driver_user_1 = webdriver.Chrome(options=chrome_options, service=service)
 
 # Локаторы
 LOGIN_FIELD = ("xpath", "//input[@type='email']")
@@ -23,7 +25,7 @@ driver_user_1.find_element(*PASSWORD_FIELD).send_keys(os.environ["PASSWORD_L19"]
 driver_user_1.find_element(*SUBMIT_BUTTON).click()
 
 # Запускаем второй экземпляр Chrome для другого пользователя
-driver_user_2 = webdriver.Chrome(options=options, service=service)
+driver_user_2 = webdriver.Chrome(options=chrome_options, service=service)
 # Открываем страницу логина для второго пользователя
 driver_user_2.get("https://hyperskill.org/login")
 

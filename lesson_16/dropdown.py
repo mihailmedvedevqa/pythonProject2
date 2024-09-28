@@ -77,7 +77,7 @@ driver.get("https://demoqa.com/select-menu")
 driver.find_element("xpath", "//div[@id='withOptGroup']").click()
 
 
-# Вариант 1
+# Вариант 2
 # Поиск элемента внутри dropdown по text
 def choose_dropdown_element_by_text(text):
     elements = driver.find_elements("xpath", "//div[@id='withOptGroup']//div[contains(@id, 'react-select')]")
