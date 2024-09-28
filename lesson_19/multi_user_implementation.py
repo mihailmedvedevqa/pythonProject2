@@ -1,4 +1,5 @@
 import time
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -12,8 +13,8 @@ PASSWORD_FIELD = ("xpath", "//input[@type='password']")
 SUBMIT_BUTTON = ("xpath", "//button[@type='submit']")
 
 driver_user_1.get("https://hyperskill.org/login")
-driver_user_1.find_element(*LOGIN_FIELD).send_keys("alekseik@ya.ru")
-driver_user_1.find_element(*PASSWORD_FIELD).send_keys("Qwerty132!")
+driver_user_1.find_element(*LOGIN_FIELD).send_keys(os.environ["LOGIN"])
+driver_user_1.find_element(*PASSWORD_FIELD).send_keys(os.environ["PASSWORD"])
 driver_user_1.find_element(*SUBMIT_BUTTON).click()
 time.sleep(3)
 
