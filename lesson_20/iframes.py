@@ -4,25 +4,25 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 
-# Устанавливаем сервис для Chrome с помощью менеджера драйвера
-service = Service(executable_path=ChromeDriverManager().install())
-# Создаем объект Options для настройки параметров браузера
-chrome_options = Options()
-# Запускаем экземпляр Chrome для первого пользователя
-driver = webdriver.Chrome(options=chrome_options, service=service)
+# Создаем объект Options для настройки Chrome
+options = Options()
+options.add_argument("--window-size=1920,1080")  # Устанавливаем размер окна браузера
+# Устанавливаем ChromeDriver через менеджер и создаем сервис
+service = Service(ChromeDriverManager().install())
+# Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
+driver = webdriver.Chrome(service=service, options=options)
 
 # Вариант 1
-# Локаторы
+
+# Локаторы элементов
 FROM_NAME_FIELD_LOCATOR = ("xpath", "//input[@name='RESULT_TextField-1']")
 COPY_TEXT_LOCATOR = ("xpath", "//button[text()='Copy Text']")
 IFRAME_LOCATOR = ("xpath", "//iframe")
-
-
-# Страница для работы
+# Открываем целевую страницу
 driver.get("https://testautomationpractice.blogspot.com")
 # Переключение на iframe
-iframe = driver.find_element(*IFRAME_LOCATOR)
-driver.switch_to.frame(iframe)
+iframe = driver.find_element(*IFRAME_LOCATOR)  # Находим iframe
+driver.switch_to.frame(iframe)  # Переключаемся на iframe
 # Вводим текст в поле
 driver.find_element(*FROM_NAME_FIELD_LOCATOR).send_keys("Test")
 # Возвращаемся к основному контенту страницы
@@ -31,7 +31,8 @@ driver.switch_to.default_content()
 driver.find_element(*COPY_TEXT_LOCATOR).click()
 
 # Вариант 2
-# Страница для работы
+
+# Открываем целевую страницу
 driver.get("https://demoqa.com/nestedframes")
 # Переключаемся на первый фрейм по его имени
 driver.switch_to.frame("frame1")
