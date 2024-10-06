@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 options = Options()
 options.add_argument("--window-size=1920,1080")  # Устанавливаем размер окна браузера
 options.add_extension('extensions\\adblock.crx')  # Устанавливаем расширение
-
+# Инициализируем веб-драйвер для Chrome с заданными опциями
 driver = webdriver.Chrome(options=options)
 
 # Открываем тестовую страницу
