@@ -50,9 +50,11 @@ for option in all_options:
 for option in all_options:
     DROPDOWN.select_by_value(option.get_attribute("value"))
 
-# Современный Dropdown, способ 1
+# Современный Dropdown
 
-# Локатор dropdown
+# Способ 1
+
+# Локатор выпадающего списка
 SELECT_TITLE = ("xpath", "//input[@id='react-select-3-input']")
 # Страница для работы
 driver.get("https://demoqa.com/select-menu")
@@ -61,8 +63,10 @@ driver.find_element(*SELECT_TITLE).send_keys("Mrs.")
 # Подтверждаем выбор
 driver.find_element(*SELECT_TITLE).send_keys(Keys.ENTER)
 
-# Современный Dropdown, способ 2
+# Способ 2
+
 # Вариант 1
+
 # Страница для работы
 driver.get("https://demoqa.com/select-menu")
 # Открываем dropdown
@@ -77,12 +81,13 @@ driver.find_element("xpath", "//div[@id='withOptGroup']").click()
 
 
 # Вариант 2
-# Поиск элемента внутри dropdown по text
+
+# Поиск элемента внутри выпадающего списка по text
 def choose_dropdown_element_by_text(text):
     elements = driver.find_elements("xpath", "//div[@id='withOptGroup']//div[contains(@id, 'react-select')]")
     for element in elements:
         if text in element.text:
-            return element  # Возвращаем нужный элемент из dropdown по text
+            return element  # Возвращаем нужный элемент из выпадающего списка по text
 
 
 choose_dropdown_element_by_text("Another root option").click()  # Кликаем на выбранный элемент
