@@ -1,7 +1,6 @@
 import os
 import pickle
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
 
 # Создаем объект ChromeOptions для настройки браузера
 options = webdriver.ChromeOptions()
@@ -10,8 +9,6 @@ options.add_argument("--window-size=1920,1080")  # Устанавливаем р
 service = webdriver.ChromeService()
 # Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
 driver = webdriver.Chrome(service=service, options=options)
-# Устанавливаем ожидание до 15 секунд, проверяя наличие элемента каждую секунду
-wait = WebDriverWait(driver, 15, poll_frequency=1)
 
 # Переходим на страницу входа
 driver.get("https://www.freeconferencecall.com/login")
