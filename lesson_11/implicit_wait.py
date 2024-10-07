@@ -1,10 +1,8 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 
-# Устанавливаем ChromeDriver через менеджер и создаем сервис
-service = Service(executable_path=ChromeDriverManager().install())
-# Инициализируем веб-драйвер для Chrome с заданными сервисом
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
+# Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
 driver = webdriver.Chrome(service=service)
 # Устанавливаем неявное ожидание в 10 секунд
 driver.implicitly_wait(10)
