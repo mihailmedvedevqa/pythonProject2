@@ -1,17 +1,15 @@
-import time
-
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 
-service = Service(executable_path=ChromeDriverManager().install())
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
+# Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
 driver = webdriver.Chrome(service=service)
 
+# Переходим на страницу
 driver.get("https://www.freeconferencecall.com/login")
-
+# Кликаем на элемент
 driver.find_element("id", "loginformsubmit").click()
 
-time.sleep(3)
 
 # ID = "id"
 # XPATH = "xpath"
