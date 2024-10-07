@@ -1,13 +1,10 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 
-# Создаем объект Options для настройки Chrome
-options = Options()
+# Создаем объект ChromeOptions для настройки браузера
+options = webdriver.ChromeOptions()
 options.add_argument("--window-size=1920,1080")  # Устанавливаем размер окна браузера
-# Устанавливаем ChromeDriver через менеджер и создаем сервис
-service = Service(ChromeDriverManager().install())
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
 # Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
 driver = webdriver.Chrome(service=service, options=options)
 
