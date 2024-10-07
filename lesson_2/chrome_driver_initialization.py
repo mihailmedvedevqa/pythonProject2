@@ -1,6 +1,12 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 
-service = Service(executable_path=ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service)
+# Создаем объект ChromeOptions для настройки браузера
+options = webdriver.ChromeOptions()
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
+# Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
+driver = webdriver.Chrome(service=service, options=options)
+
+# Переходим на страницу Google
+driver.get("https://www.google.com/")
+print(driver.title)  # Печатаем заголовок страницы
