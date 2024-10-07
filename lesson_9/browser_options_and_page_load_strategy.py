@@ -1,27 +1,28 @@
 import time
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 
-# Browser options
-chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless") # Headless mode
-# chrome_options.add_argument("--incognito") # Incognito mode
-# chrome_options.add_argument("--ignore-certificate-errors") # Ignore certificate errors
-# chrome_options.add_argument("--window-size=700,700") # Browser window size
-# chrome_options.add_argument("--disable-cache") # Disable cache
+# Создаем объект ChromeOptions для настройки браузера
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")  # Запускаем браузер в фоновом режиме
+options.add_argument("--incognito")  # Используем режим инкогнито
+options.add_argument("--ignore-certificate-errors")  # Игнорируем ошибки сертификатов
+options.add_argument("--window-size=1920,1080")  # Устанавливаем размер окна браузера
+options.add_argument("--disable-cache")  # Отключаем кэширование
+# Устанавливаем стратегию загрузки страницы
+options.page_load_strategy = "normal"  # Ждем полной загрузки страницы
+options.page_load_strategy = "eager"  # Ждем, пока DOM будет загружен и доступен для взаимодействия
+options.page_load_strategy = "none"  # Не ждем загрузки страницы
 
-# chrome_options.page_load_strategy = "normal"
-# chrome_options.page_load_strategy = "eager"
-# chrome_options.page_load_strategy = "none"
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
+# Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
+driver = webdriver.Chrome(service=service, options=options)
 
-# Driver initialization
-service = Service(executable_path=ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=chrome_options)
-# driver.set_window_size(700, 700)
-
-start_time = time.time()
-driver.get("https://whatismyipaddress.com/")
-end_time = time.time()
+# Измеряем время загрузки страницы
+start_time = time.time()  # Записываем время начала
+driver.get("https://whatismyipaddress.com/")  # Переходим на сайт для проверки IP
+end_time = time.time()  # Записываем время окончания
+# Рассчитываем время загрузки
 result = end_time - start_time
-print(result)
+# Выводим результат
+print(f"Время загрузки страницы: {result} секунд")
