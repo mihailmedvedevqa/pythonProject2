@@ -7,7 +7,7 @@ driver = webdriver.Chrome(service=service)
 # Устанавливаем неявное ожидание в 10 секунд
 driver.implicitly_wait(10)
 
-# Переходим на страницу с динамическими свойствами
+# Переходим на страницу
 driver.get("https://demoqa.com/dynamic-properties")
 # Определяем кнопку, которая должна стать видимой
 VISIBLE_AFTER_BUTTON = ("xpath", "//button[@id='visibleAfter']")
