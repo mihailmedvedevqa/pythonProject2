@@ -1,17 +1,16 @@
-import time
 import os
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 
-# Browser options
-chrome_options = webdriver.ChromeOptions()
-# Driver initialization
-service = Service(executable_path=ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=chrome_options)
+# Создаем объект ChromeOptions для настройки браузера
+options = webdriver.ChromeOptions()
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
+# Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
+driver = webdriver.Chrome(service=service, options=options)
 
+# Переходим на страницу для загрузки файлов
 driver.get("https://the-internet.herokuapp.com/upload")
-time.sleep(3)
+# Находим элемент для загрузки файла
 UPLOAD_FILE = driver.find_element("xpath", "//input[@type='file']")
+# Отправляем путь к файлу, который хотим загрузить
 UPLOAD_FILE.send_keys(f"{os.getcwd()}\\downloads\\test-upload.txt")
-time.sleep(3)
