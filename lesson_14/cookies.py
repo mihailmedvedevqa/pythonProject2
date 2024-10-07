@@ -1,15 +1,15 @@
 import os
 import pickle
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 
-
-# Устанавливаем ChromeDriver через менеджер и создаем сервис
-service = Service(executable_path=ChromeDriverManager().install())
-# Инициализируем веб-драйвер для Chrome с заданными сервисом
-driver = webdriver.Chrome(service=service)
+# Создаем объект ChromeOptions для настройки браузера
+options = webdriver.ChromeOptions()
+options.add_argument("--window-size=1920,1080")  # Устанавливаем размер окна браузера
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
+# Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
+driver = webdriver.Chrome(service=service, options=options)
 # Устанавливаем ожидание до 15 секунд, проверяя наличие элемента каждую секунду
 wait = WebDriverWait(driver, 15, poll_frequency=1)
 
