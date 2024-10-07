@@ -1,8 +1,8 @@
 class Scrolls:
 
-    def __init__(self, driver, action):
+    def __init__(self, driver, actions):
         self.driver = driver
-        self.action = action
+        self.actions = actions
 
     def scroll_by(self, x, y):  # Scroll по x и y
         self.driver.execute_script(f"window.scrollTo({x}, {y})")
@@ -14,7 +14,7 @@ class Scrolls:
         self.driver.execute_script("window.scrollTo(0, 0)")
 
     def scroll_to_element(self, element):  # Scroll к элементу с раскрытием контента под ним
-        self.action.scroll_to_element(element).perform()
+        self.actions.scroll_to_element(element).perform()
         self.driver.execute_script("""
         window.scrollTo({
             top: window.scrollY + 700,
