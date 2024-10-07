@@ -1,25 +1,20 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import Keys
 
-
-# Создаем объект Options для настройки Chrome
-options = Options()
+# Создаем объект ChromeOptions для настройки браузера
+options = webdriver.ChromeOptions()
 options.add_argument("--window-size=1920,1080")  # Устанавливаем размер окна браузера
-# Устанавливаем ChromeDriver через менеджер и создаем сервис
-service = Service(ChromeDriverManager().install())
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
 # Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
 driver = webdriver.Chrome(service=service, options=options)
 
-
 # Вариант 1
 
-# Локатор выпадающего списка
-MULTISELECT = ("xpath", "//input[@id='react-select-4-input']")
 # Страница для работы
 driver.get("https://demoqa.com/select-menu")
+# Локатор выпадающего списка
+MULTISELECT = ("xpath", "//input[@id='react-select-4-input']")
 # Вводим текст в поле ввода
 driver.find_element(*MULTISELECT).send_keys("Gre")
 # Проверяем, что введённый текст соответствует ожидаемому значению
@@ -29,10 +24,10 @@ driver.find_element(*MULTISELECT).send_keys(Keys.TAB)
 
 # Вариант 2
 
-# Локатор выпадающего списка
-MULTISELECT = ("xpath", "//input[@id='react-select-4-input']")
 # Страница для работы
 driver.get("https://demoqa.com/select-menu")
+# Локатор выпадающего списка
+MULTISELECT = ("xpath", "//input[@id='react-select-4-input']")
 # Вводим текст в поле ввода
 driver.find_element(*MULTISELECT).send_keys("Bla")
 # Проверяем, что введённый текст соответствует ожидаемому значению

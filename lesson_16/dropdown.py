@@ -1,25 +1,21 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.select import Select
 from selenium.webdriver import Keys
 
-
-# Создаем объект Options для настройки Chrome
-options = Options()
+# Создаем объект ChromeOptions для настройки браузера
+options = webdriver.ChromeOptions()
 options.add_argument("--window-size=1920,1080")  # Устанавливаем размер окна браузера
-# Устанавливаем ChromeDriver через менеджер и создаем сервис
-service = Service(ChromeDriverManager().install())
+# Создаем сервис для Chrome
+service = webdriver.ChromeService()
 # Инициализируем веб-драйвер для Chrome с заданными сервисом и опциями
 driver = webdriver.Chrome(service=service, options=options)
 
 # Стандартный dropdown
 
-# Локатор выпадающего списка
-DROPDOWN_ELEMENT = ("xpath", "//select[@id='dropdown']")
 # Страница для работы
 driver.get("https://the-internet.herokuapp.com/dropdown")
+# Локатор выпадающего списка
+DROPDOWN_ELEMENT = ("xpath", "//select[@id='dropdown']")
 # Создаем объект выпадающего списка, поместив внутрь веб-элемент dropdown
 DROPDOWN = Select(driver.find_element(*DROPDOWN_ELEMENT))
 # Выбор элемента по содержимому text
@@ -32,10 +28,10 @@ print(DROPDOWN.options)  # Вернет все элементы
 
 # Перебор элементов
 
-# Локатор выпадающего списка
-DROPDOWN_LOCATOR = ("xpath", "//select[@id='oldSelectMenu']")
 # Страница для работы
 driver.get("https://demoqa.com/select-menu")
+# Локатор выпадающего списка
+DROPDOWN_LOCATOR = ("xpath", "//select[@id='oldSelectMenu']")
 # Создаем объект выпадающего списка, поместив внутрь веб-элемент dropdown
 DROPDOWN = Select(driver.find_element(*DROPDOWN_LOCATOR))
 # Запишем все элементы выпадающего списка
